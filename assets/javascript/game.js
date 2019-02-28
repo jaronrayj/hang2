@@ -23,21 +23,28 @@ function initialBlanks() {
     }
 }
 
+function display() {
+    $("#guessesLeft").text("Guesses left: " + guessesLeft);
+    $("#guesses").text("Guesses made: " + guesses);
+}
 
+display();
 initialBlanks();
 // var userInput = userInput.toLowerCase()
 // Add guesses
 document.onkeyup = function (event) {
     var userInput = event.key.toLowerCase();
 
-    guesses.push(userInput);
+
     if (event.keyCode >= "65" && event.keyCode <= "90") {
         console.log(guesses);
         // for loop
         for (let i = 0; i < splitWord.length; i++) {
-            if (userInput === splitWord[i]) {
+            if (userInput === splitWord[i] && !(guesses.includes(userInput))) {
                 blanksSpaces[i] = userInput;
                 correct++;
+                guesses.push(userInput);
+                display();
                 if (correct === splitWord.length) {
                     alert("You Won!")
                 }
@@ -47,16 +54,28 @@ document.onkeyup = function (event) {
                     $("#blanks").append(blanksSpaces[i]);
                 }
 
+            } else if (guesses.includes(userInput)) {
+
+            } else if (i < (splitWord.length - 1)) {
+
             } else {
                 guessesLeft--;
+                guesses.push(userInput);
                 console.log("guesses left " + guessesLeft);
+                display();
                 if (guessesLeft === 0) {
-                    alert("You lost")
+                    alert("You lost");
                 }
-
             }
-
         }
-
     }
 }
+
+$("#newGame").on("click",
+    function newGame() {
+        var word = wordArray[Math.floor(Math.random() * wordArray.length)];
+        $("#blanks").empty();
+        display();
+        initialBlanks();
+
+    })
