@@ -1,11 +1,14 @@
 // Create arry
-var wordArray = ["string", "number"]
+var wordArray = [
+    "Bulbasaur", "Ivysaur", "Venusaur", "Charmander", "Charmeleon", "Charizard", "Squirtle", "Wartortle", "Blastoise", "Caterpie", "Metapod", "Butterfree", "Weedle", "Kakuna", "Beedrill", "Pidgey", "Pidgeotto", "Pidgeot", "Rattata", "Raticate", "Spearow", "Fearow", "Ekans", "Arbok", "Pikachu", "Raichu", "Sandshrew", "Sandslash", "Nidoran", "Nidorina", "Nidoqueen", "Nidoran", "Nidorino", "Nidoking", "Clefairy", "Clefable", "Vulpix", "Ninetales", "Jigglypuff", "Wigglytuff", "Zubat", "Golbat", "Oddish", "Gloom", "Vileplume", "Paras", "Parasect", "Venonat", "Venomoth", "Diglett", "Dugtrio", "Meowth", "Persian", "Psyduck", "Golduck", "Mankey", "Primeape", "Growlithe", "Arcanine", "Poliwag", "Poliwhirl", "Poliwrath", "Abra", "Kadabra", "Alakazam", "Machop", "Machoke", "Machamp", "Bellsprout", "Weepinbell", "Victreebel", "Tentacool", "Tentacruel", "Geodude", "Graveler", "Golem", "Ponyta", "Rapidash", "Slowpoke", "Slowbro", "Magnemite", "Magneton", "Farfetchd", "Doduo", "Dodrio", "Seel", "Dewgong", "Grimer", "Muk", "Shellder", "Cloyster", "Gastly", "Haunter", "Gengar", "Onix", "Drowzee", "Hypno", "Krabby", "Kingler", "Voltorb", "Electrode", "Exeggcute", "Exeggutor", "Cubone", "Marowak", "Hitmonlee", "Hitmonchan", "Lickitung", "Koffing", "Weezing", "Rhyhorn", "Rhydon", "Chansey", "Tangela", "Kangaskhan", "Horsea", "Seadra", "Goldeen", "Seaking", "Staryu", "Starmie", "MrMime", "Scyther", "Jynx", "Electabuzz", "Magmar", "Pinsir", "Tauros", "Magikarp", "Gyarados", "Lapras", "Ditto", "Eevee", "Vaporeon", "Jolteon", "Flareon", "Porygon", "Omanyte", "Omastar", "Kabuto", "Kabutops", "Aerodactyl", "Snorlax", "Articuno", "Zapdos", "Moltres", "Dratini", "Dragonair", "Dragonite", "Mewtwo", "Mew"
+]
 
 // get random word
 var word = wordArray[Math.floor(Math.random() * wordArray.length)];
 
 // Split word into array
 var splitWord = word.split("");
+console.log(word);
 
 var blanksSpaces = [];
 var guesses = [];
@@ -30,23 +33,23 @@ function display() {
 
 display();
 initialBlanks();
-// var userInput = userInput.toLowerCase()
+// var userInput = userInput.toUpperCase()
 // Add guesses
 document.onkeyup = function (event) {
-    var userInput = event.key.toLowerCase();
+    var userInput = event.key.toUpperCase();
 
+
+    // NEED TO BE ABLE TO DO MULTIPLE LETTERS
 
     if (event.keyCode >= "65" && event.keyCode <= "90") {
-        console.log(guesses);
         // for loop
         for (let i = 0; i < splitWord.length; i++) {
-            if (userInput === splitWord[i] && !(guesses.includes(userInput))) {
+            if (userInput === splitWord[i].toUpperCase()) {
                 blanksSpaces[i] = userInput;
-                correct++;
-                guesses.push(userInput);
-                display();
-                if (correct === splitWord.length) {
-                    alert("You Won!")
+
+                if (!(guesses.includes(userInput))) {
+                    guesses.push(userInput);
+                    display();
                 }
                 $("#blanks").empty(blanksSpaces[i]);
 
@@ -54,9 +57,10 @@ document.onkeyup = function (event) {
                     $("#blanks").append(blanksSpaces[i]);
                 }
 
-            } else if (guesses.includes(userInput)) {
-
-            } else if (i < (splitWord.length - 1)) {
+                if (!(blanksSpaces.includes("_ "))) {
+                    alert("You Won!")
+                }
+            } else if (guesses.includes(userInput) || i < (splitWord.length - 1)) {
 
             } else {
                 guessesLeft--;
@@ -64,7 +68,7 @@ document.onkeyup = function (event) {
                 console.log("guesses left " + guessesLeft);
                 display();
                 if (guessesLeft === 0) {
-                    alert("You lost");
+                    alert("You lost. The word was " + word);
                 }
             }
         }
@@ -73,9 +77,15 @@ document.onkeyup = function (event) {
 
 $("#newGame").on("click",
     function newGame() {
-        var word = wordArray[Math.floor(Math.random() * wordArray.length)];
+        word = wordArray[Math.floor(Math.random() * wordArray.length)];
+        splitWord = word.split("");
         $("#blanks").empty();
+        correct = 0;
+        guessesLeft = 10;
+        guesses = [];
+        blanksSpaces = [];
         display();
         initialBlanks();
+        console.log(word);
 
     })
