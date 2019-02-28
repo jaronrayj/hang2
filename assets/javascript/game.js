@@ -3,9 +3,18 @@ var wordArray = [
     "Bulbasaur", "Ivysaur", "Venusaur", "Charmander", "Charmeleon", "Charizard", "Squirtle", "Wartortle", "Blastoise", "Caterpie", "Metapod", "Butterfree", "Weedle", "Kakuna", "Beedrill", "Pidgey", "Pidgeotto", "Pidgeot", "Rattata", "Raticate", "Spearow", "Fearow", "Ekans", "Arbok", "Pikachu", "Raichu", "Sandshrew", "Sandslash", "Nidoran", "Nidorina", "Nidoqueen", "Nidoran", "Nidorino", "Nidoking", "Clefairy", "Clefable", "Vulpix", "Ninetales", "Jigglypuff", "Wigglytuff", "Zubat", "Golbat", "Oddish", "Gloom", "Vileplume", "Paras", "Parasect", "Venonat", "Venomoth", "Diglett", "Dugtrio", "Meowth", "Persian", "Psyduck", "Golduck", "Mankey", "Primeape", "Growlithe", "Arcanine", "Poliwag", "Poliwhirl", "Poliwrath", "Abra", "Kadabra", "Alakazam", "Machop", "Machoke", "Machamp", "Bellsprout", "Weepinbell", "Victreebel", "Tentacool", "Tentacruel", "Geodude", "Graveler", "Golem", "Ponyta", "Rapidash", "Slowpoke", "Slowbro", "Magnemite", "Magneton", "Farfetchd", "Doduo", "Dodrio", "Seel", "Dewgong", "Grimer", "Muk", "Shellder", "Cloyster", "Gastly", "Haunter", "Gengar", "Onix", "Drowzee", "Hypno", "Krabby", "Kingler", "Voltorb", "Electrode", "Exeggcute", "Exeggutor", "Cubone", "Marowak", "Hitmonlee", "Hitmonchan", "Lickitung", "Koffing", "Weezing", "Rhyhorn", "Rhydon", "Chansey", "Tangela", "Kangaskhan", "Horsea", "Seadra", "Goldeen", "Seaking", "Staryu", "Starmie", "MrMime", "Scyther", "Jynx", "Electabuzz", "Magmar", "Pinsir", "Tauros", "Magikarp", "Gyarados", "Lapras", "Ditto", "Eevee", "Vaporeon", "Jolteon", "Flareon", "Porygon", "Omanyte", "Omastar", "Kabuto", "Kabutops", "Aerodactyl", "Snorlax", "Articuno", "Zapdos", "Moltres", "Dratini", "Dragonair", "Dragonite", "Mewtwo", "Mew"
 ]
 
+var word;
+var pokeDexNumber;
 // get random word
-var word = wordArray[Math.floor(Math.random() * wordArray.length)];
+function randomWord() {
+    var random = (Math.floor(Math.random() * wordArray.length));
+    word = wordArray[random];
+    pokeDexNumber = random++;
 
+
+}
+
+randomWord();
 // Split word into array
 var splitWord = word.split("");
 console.log(word);
@@ -14,6 +23,7 @@ var blanksSpaces = [];
 var guesses = [];
 var correct = 0;
 var guessesLeft = 10;
+var pokePic;
 
 // display split array - whether span or just directly displaying
 
@@ -77,7 +87,7 @@ document.onkeyup = function (event) {
 
 $("#newGame").on("click",
     function newGame() {
-        word = wordArray[Math.floor(Math.random() * wordArray.length)];
+        randomWord();
         splitWord = word.split("");
         $("#blanks").empty();
         correct = 0;
@@ -87,5 +97,26 @@ $("#newGame").on("click",
         display();
         initialBlanks();
         console.log(word);
+        urlCombine();
+
+        $("#pokePic").empty().prepend("<img src=" + pokePic + ">")
 
     })
+
+// Picture
+function urlCombine() {
+    var url = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/"
+    if (pokeDexNumber < 10) {
+        pokePic = url + "00" + pokeDexNumber + ".png";
+    } else if (pokeDexNumber < 100) {
+        pokePic = url + "0" + pokeDexNumber + ".png";
+    } else {
+        pokePic = url + pokeDexNumber + ".png"
+    }
+}
+
+urlCombine();
+$("#pokePic").prepend("<img src=" + pokePic + ">").hide();
+
+console.log(pokeDexNumber);
+console.log(pokePic);
