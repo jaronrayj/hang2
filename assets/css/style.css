@@ -53,3 +53,9 @@ html body {
 #pokePic {
     text-align: center;
 }
+
+#party {
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+}

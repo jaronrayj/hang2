@@ -74,8 +74,8 @@ document.onkeyup = function (event) {
                         newGame();
                     });
 
-                    // .text("Gotcha! Wild " + word + " was caught!")
                     urlCombine();
+                    $("#party").text("Your Pokémon Party");
                     $("#pokePic").append("<img src=" + pokePic + ">");
                 }
             } else if (guesses.includes(userInput) || i < (splitWord.length - 1)) {
@@ -87,6 +87,7 @@ document.onkeyup = function (event) {
                 display();
                 if (guessesLeft === 0) {
                     $("#display").hide();
+
                     $("#caughtText").show().text("You missed... The pokémon was " + word + ". Gotta Catch 'em all?");
                     $("#caughtText").click(function () {
                         newGame();
