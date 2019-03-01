@@ -37,6 +37,7 @@ function initialBlanks() {
 }
 
 function display() {
+    $("#guide").text("Type letters to throw pokeballs and try to catch the Pokémon!");
     $("#guessesLeft").text("Guesses left: " + guessesLeft);
     $("#guesses").text("Guesses made: " + guesses);
 }

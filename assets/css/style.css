@@ -47,4 +47,9 @@ html body {
     margin: auto;
     line-height: 2em;
     font-size: large;
+    text-align: center;
+}
+
+#pokePic {
+    text-align: center;
 }
