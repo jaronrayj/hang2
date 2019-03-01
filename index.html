@@ -2,25 +2,58 @@
 <html lang="en">
 
 <head>
-    <title>Hangmon</title>
+    <title>Hangémon</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Luckiest+Guy" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="./assets/images/Pokeball.PNG" />
 </head>
 
 <body>
-    <div id="blanks"></div>
-    <div id="guessesLeft"></div>
-    <div id="guesses"></div>
-    <div id="pokePic"></div>
+    <header class="header">
+        <img id="banner" src="./assets/images/banner3NoWhite.png" alt="Pokemon Banner">
+    </header>
+    <img id="background" src="./assets/images/backgroundFun.jpg" alt="">
+    <h1 id="header-text">Hangémon</h1>
+    <div class="container">
 
-    <button id="newGame">Try again?</button>
+        <div id="appear" class="row">
+            <div class="col-md-4"></div>
+            <button class="col-md-4" id="newGame">Wild Pokemon Appears!</button>
+            <div class="col-md-4"></div>
+        </div>
 
+        <div id="caughtButton" class="row">
+            <div class="col-md-4"></div>
+            <button class="col-md-4" id="caughtText"></button>
+            <div class="col-md-4"></div>
+        </div>
+
+        <div id="display" class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-6">
+                <div id="blanks"></div>
+                <div id="guessesLeft"></div>
+                <div id="guesses"></div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div id="pokePic"></div>
+        </div>
+
+        <audio id="battle" src="./assets/audio/107-battle (vs wild pokemon).mp3"></audio>
+        <audio id="caught" src="./assets/audio/108-victory (vs wild pokemon).mp3"></audio>
+
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

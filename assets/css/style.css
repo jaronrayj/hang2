@@ -1,0 +1,50 @@
+#banner {
+    position: static;
+    width: 100%;
+    margin: -2% 0 0 0;
+    top: 0;
+    left: 0;
+    right: 0;
+
+}
+
+#header-text {
+    font-family: 'Luckiest Guy',
+        cursive;
+    font-size: 40px;
+    text-align: center;
+}
+
+
+
+html body {
+    font-family: 'Fredoka One',
+        cursive;
+    width: 100%;
+    opacity: 20%;
+    background: #9DFFFF;
+}
+
+#background {
+    position: absolute;
+    filter: brightness(130%);
+    z-index: -1;
+    width: 100%;
+    bottom: 0;
+}
+
+#appear {
+    text-align: center;
+    font-size: x-large;
+}
+
+#caughtButton {
+    text-align: center;
+    font-size: x-large;
+}
+
+#display {
+    margin: auto;
+    line-height: 2em;
+    font-size: large;
+}
