@@ -52,10 +52,15 @@ html body {
 
 #pokePic {
     text-align: center;
+    margin: auto;
 }
 
 #party {
     text-align: center;
     margin: auto;
     margin-top: 10px;
+}
+
+#pictures {
+    margin: auto;
 }
